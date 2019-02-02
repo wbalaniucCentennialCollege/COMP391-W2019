@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     // Public Variables
     public float speed = 10.0f;
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
 
     // Private Variables
     private Rigidbody2D rBody;
@@ -34,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
         // Restrict the player from leaving the play area
         rBody.position = new Vector2(
-            Mathf.Clamp(rBody.position.x, -8, 4),   // Restrict x position to -8 and 4
-            Mathf.Clamp(rBody.position.y, -4, 4));  // Restrict y position to -4 and 4
+            Mathf.Clamp(rBody.position.x, minX, maxX),   // Restrict x position to -8 and 4
+            Mathf.Clamp(rBody.position.y, minY, maxY));  // Restrict y position to -4 and 4
     }
 }
