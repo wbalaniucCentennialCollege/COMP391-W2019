@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float minY;
     public float maxY;
 
+    public GameObject laser;
+
     // Private Variables
     private Rigidbody2D rBody;
      
@@ -24,6 +26,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetButton("Fire1"))
+        {
+            // Create my laser object
+            Instantiate(laser, transform.position, laser.transform.rotation);
+        }
     }
 
     void FixedUpdate()
