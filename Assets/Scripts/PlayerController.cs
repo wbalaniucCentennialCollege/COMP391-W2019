@@ -12,9 +12,12 @@ public class PlayerController : MonoBehaviour
     public float maxY;
 
     public GameObject laser;
+    public Transform laserSpawn;
+    public float fireRate = 0.5f;
 
     // Private Variables
     private Rigidbody2D rBody;
+    private float counter = 0.0f;
      
     // Start is called before the first frame update
     // Use this for initialization
@@ -26,10 +29,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Fire1"))
+        counter += Time.deltaTime;
+        // Debug.Log(counter);
+
+        if (Input.GetButton("Fire1") && counter > fireRate)
         {
             // Create my laser object
-            Instantiate(laser, transform.position, laser.transform.rotation);
+            Instantiate(laser, laserSpawn.position, laser.transform.rotation);
+            counter = 0.0f;
         }
     }
 
@@ -37,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         float horiz = Input.GetAxis("Horizontal");
         float vert = Input.GetAxis("Vertical");
+
 
         // Debug.Log("H: " + horiz + " , V: " + vert);
         Vector2 newVelocity = new Vector2(horiz, vert);
