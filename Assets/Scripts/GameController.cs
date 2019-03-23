@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     // Define some variables that control spawning my waves of enemies
+    [Header("Wave Settings")]
     public GameObject hazard;   // What are we spawning?
     public Vector2 spawnValue;  // Where do we spawn our hazards?
     public int hazardCount;     // How many hazards per wave?
@@ -12,11 +14,20 @@ public class GameController : MonoBehaviour
     public float spawnWait;     // How much time between each hazard in a wave?
     public float waveWait;      // How long between each wave of hazard?
 
+    [Header("UI Options")]
+    public Text scoreText;
+    public Text gameOverText;
+    public Text restartText;
+
+    // Private variables
+    private int score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         // Run a separate function from the rest of the code
         // In it's own thread
+        UpdateScore();
         StartCoroutine(SpawnWaves());
     }
 
@@ -43,4 +54,16 @@ public class GameController : MonoBehaviour
         }
     }
     
+    // Updates my score text
+    void UpdateScore()
+    {
+        scoreText.text = "Score: " + score;
+    }
+
+    // Accepts score values, then calls update score.
+    public void AddScore(int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
 }

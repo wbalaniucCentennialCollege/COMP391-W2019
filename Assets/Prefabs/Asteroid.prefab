@@ -163,3 +163,5 @@ MonoBehaviour:
     type: 3}
   explosionPlayer: {fileID: 5652817633287849321, guid: f0862e232990783459fec86a9000a127,
     type: 3}
+  scoreValue: 10
+  gameController: {fileID: 0}
